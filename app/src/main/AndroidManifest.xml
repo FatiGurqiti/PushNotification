@@ -4,7 +4,7 @@
     package="com.example.pushnotification">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
         android:allowBackup="true"
@@ -17,12 +17,12 @@
         android:theme="@style/Theme.PushNotification"
         tools:targetApi="31">
 
-        <service
-            android:name=".services.PushNotification"
-            android:exported="false">
+        <service android:name=".services.FirebaseService"
+            android:permission="com.google.android.c2dm.permission.SEND"
+            android:exported="true">
             <intent-filter>
-<!--                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
 
