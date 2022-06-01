@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pushnotification">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PushNotification"
         tools:targetApi="31">
+
+        <service
+            android:name=".services.PushNotification"
+            android:exported="false">
+            <intent-filter>
+<!--                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
